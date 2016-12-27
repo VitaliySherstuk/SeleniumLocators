@@ -19,7 +19,7 @@ public class Main {
 	public static void main(String[] args) throws InterruptedException {
 		
 		
-		//Задание 1
+		//Exercise 1. Google.
 //		System.setProperty("webdriver.gecko.driver", "c:\\Selenium\\Drivers\\geckodriver.exe");
 //		WebDriver driver = new FirefoxDriver();
 //		driver.get("http://www.google.com");
@@ -31,7 +31,7 @@ public class Main {
 //		Thread.sleep(5000);
 //		System.out.println(driver.getTitle());
 		
-		//Задание 4
+		//Exercise 4. tut.by
 //		System.setProperty("webdriver.gecko.driver", "c:\\Selenium\\Drivers\\geckodriver.exe");
 //		WebDriver driver = new FirefoxDriver();
 //		driver.get("http://www.tut.by");
@@ -41,7 +41,7 @@ public class Main {
 //		List<WebElement> generalNews = driver.findElements(By.tagName("p"));
 //		System.out.println(generalNews.size());
 		
-		//Задание 3
+		//Exercise 3. Registration quizful.net
 //		System.setProperty("webdriver.gecko.driver", "c:\\Selenium\\Drivers\\geckodriver.exe");
 //		WebDriver driver = new FirefoxDriver();
 //		driver.get("http://quizful.net");
@@ -65,7 +65,7 @@ public class Main {
 //		WebElement button = driver.findElement(By.name("ok"));
 //		button.click();
 		
-//		//Задание 6
+//		//Exercise 6. Authorisation on quizful.net and edit personal information
 //		System.setProperty("webdriver.gecko.driver", "c:\\Selenium\\Drivers\\geckodriver.exe");
 //		WebDriver driver = new FirefoxDriver();
 //		driver.get("http://quizful.net");
