@@ -1,6 +1,7 @@
 package by.htp.driver;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -13,6 +14,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import by.htp.entity.Flight;
+import by.htp.entity.Schedule;
 
 public class Main {
 
@@ -231,6 +235,7 @@ public class Main {
 		//Belavia
 		System.setProperty("webdriver.gecko.driver", "c:\\Selenium\\Drivers\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
+		Flight flight=null;
 		driver.get("http://www.belavia.by");
 		Thread.sleep(5000);
 		WebElement fromCity = driver.findElement(By.id("OriginLocation_Combobox"));
@@ -257,7 +262,7 @@ public class Main {
 				break;
 			}
 		}
-		
+		Thread.sleep(5000);
 		List<WebElement> button = driver.findElements(By.tagName("button"));
 		for(WebElement element : button)
 		{
@@ -267,8 +272,69 @@ public class Main {
 				break;
 			}
 		}
+		Thread.sleep(5000);
 		
+		ArrayList<String> timeDeparture = null;
+		ArrayList<String> timeArrive = null;
+		ArrayList<String> cost = null;
+		Schedule schedule = new Schedule();
+		boolean flag = false;
+		List<WebElement> divRadioButton = driver.findElements(By.xpath("//div[@class='content']//input[@name='date']"));
+		WebElement elementRadioButton=null;
+		for(WebElement element : divRadioButton)
+		{
+			elementRadioButton = element;
+			break;
+		}
+		String str = elementRadioButton.getAttribute("id");
+		
+		while(!flag)
+		{
+			flight = new Flight();
+			timeDeparture = new ArrayList<String>();
+			timeArrive = new ArrayList<String>();
+			cost = new ArrayList<String>();
+				Thread.sleep(3000);
+				WebElement radioButtonElement = driver.findElement(By.id(str));
+				radioButtonElement.click();
+				WebElement buttonNext = driver.findElement(By.xpath("//button[@value='next']"));
+				buttonNext.click();
+				Thread.sleep(3000);
+				WebElement dateElement = driver.findElement(By.xpath("//div[@id='outbound']//div[@class='col-mb-7']//h3"));
+				flight.setData(dateElement.getText());
+				if(dateElement.getText().equals("суббота 01 июля"))
+				{
+					flag= true;
+				}
+				List<WebElement> flightsTimeDeparture = driver.findElements(By.xpath("//div[@class='flight-avail']//div[@class='departure']//strong"));
+				for(WebElement element2 : flightsTimeDeparture)
+				{
+					timeDeparture.add(element2.getText());
+				}
+				List<WebElement> flightsTimeArrive = driver.findElements(By.xpath("//div[@class='flight-avail']//div[@class='arrival']//strong"));
+				for(WebElement element3 : flightsTimeArrive)
+				{
+					timeArrive.add(element3.getText());
+				}
+				List<WebElement> costEconomy = driver.findElements(By.xpath("//div[@class='er fare']//label"));
+				for(WebElement element4 : costEconomy)
+				{
+					cost.add(element4.getText());
+				}
+				WebElement calendar = driver.findElement(By.xpath("//a[text()='Календарь тарифов']"));
+				calendar.click();
+				Thread.sleep(3000);
+				flight.setTimeDeparture(timeDeparture);
+				flight.setTimeArrive(timeArrive);
+				flight.setCostEconomy(cost);
+				schedule.addSchedule(flight);
+			}
 			
+			driver.close();
+				
+			schedule.display();
+		}
+		
 	}
 
-}
+
