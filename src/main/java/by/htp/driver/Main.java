@@ -217,20 +217,6 @@ public class Main {
 //		
 //		driver.close();
 		
-		//Задание 2
-//		System.setProperty("webdriver.gecko.driver", "c:\\Selenium\\Drivers\\geckodriver.exe");
-//		WebDriver driver = new FirefoxDriver();
-//		driver.get("http://www.it-academy.by");
-		
-//		WebElement departMenu = driver.findElement(By.className("expanded menu-depth-1 menu-item-633"));
-//		System.out.println(departMenu.getText());
-//		List<WebElement> list = departMenu.findElements(By.tagName("a"));
-//		for(WebElement element : list)
-//		{
-//			System.out.println(element.getText());
-//		}
-//		System.out.println(departMenu.getLocation());
-		
 		
 		//Belavia
 		System.setProperty("webdriver.gecko.driver", "c:\\Selenium\\Drivers\\geckodriver.exe");
